@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurante · Panel Unificado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <div>
+        <h1>Restaurante · Panel Unificado</h1>
+        <p class="tagline">Diseño listo para conectar a la base de datos que elijas.</p>
+      </div>
+    </div>
+    <div class="pill">Estado: Diseño estático · API pendiente</div>
+  </header>
+
+  <nav aria-label="Menú principal">
+    <div class="nav-grid">
+      <a class="nav-link" href="#principal">
+        <div>🏠 Principal</div>
+        <span>Visión general</span>
+      </a>
+      <a class="nav-link" href="#maitre">
+        <div>🛎️ Maitre</div>
+        <span>Salón y reservas</span>
+      </a>
+      <a class="nav-link" href="#mesero">
+        <div>🧾 Mesero</div>
+        <span>Mesas y pedidos</span>
+      </a>
+      <a class="nav-link" href="#cocinero">
+        <div>👨‍🍳 Cocinero</div>
+        <span>Órdenes y pases</span>
+      </a>
+      <a class="nav-link" href="#admin">
+        <div>⚙️ Admin</div>
+        <span>Operación</span>
+      </a>
+      <a class="nav-link" href="#cliente">
+        <div>🧑‍🧑‍🧒 Cliente</div>
+        <span>Autogestión</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="principal">
+      <div class="section-head">
+        <h2 class="section-title">Menú principal</h2>
+        <span class="badge">Vista general</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reservas en curso</div>
+          <p class="meta">Revisa disponibilidad y asigna mesas.</p>
+          <ul class="actions">
+            <li>Calendario y slots <span class="tag">Próximamente API</span></li>
+            <li>Asignación rápida <span class="tag">Arrastrar y soltar</span></li>
+            <li>Alertas de retraso <span class="tag">Notificaciones</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Mesas activas</div>
+          <p class="meta">Estado de servicio por mesa.</p>
+          <ul class="actions">
+            <li>Mapa de sala <span class="tag">Grid responsivo</span></li>
+            <li>Cuenta en curso <span class="tag">Consumos vivos</span></li>
+            <li>Solicitudes pendientes <span class="tag">Timbre digital</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Órdenes de cocina</div>
+          <p class="meta">Preparaciones, pases y tiempos.</p>
+          <ul class="actions">
+            <li>Ticket digital <span class="tag">Prioridades</span></li>
+            <li>Pasar a barra <span class="tag">Flujo caliente</span></li>
+            <li>Histórico <span class="tag">Auditoría</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Panel administrativo</div>
+          <p class="meta">Indicadores, costos y usuarios.</p>
+          <ul class="actions">
+            <li>KPIs diarios <span class="tag">Tickets, rotación</span></li>
+            <li>Inventario <span class="tag">Reposiciones</span></li>
+            <li>Roles y accesos <span class="tag">Seguridad</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="maitre">
+      <div class="section-head">
+        <h2 class="section-title">Menú · Maitre</h2>
+        <span class="badge">Salón y reservas</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reservas</div>
+          <p class="meta">Crear, editar y confirmar reservas.</p>
+          <ul class="actions">
+            <li>Agenda visual <span class="tag">Horas pico</span></li>
+            <li>Preasignar mesa <span class="tag">Capacidad</span></li>
+            <li>Notas especiales <span class="tag">Alergias</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Control de sala</div>
+          <p class="meta">Seguimiento en vivo de mesas.</p>
+          <ul class="actions">
+            <li>Mapa de ocupación <span class="tag">Color por estado</span></li>
+            <li>Cambio de mesero <span class="tag">Cobertura</span></li>
+            <li>Alertas de espera <span class="tag">Tiempo en fila</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Lista de espera</div>
+          <p class="meta">Gestiona turnos y notificaciones.</p>
+          <ul class="actions">
+            <li>Check-in por QR <span class="tag">Autoatención</span></li>
+            <li>SMS/Email <span class="tag">Aviso de mesa lista</span></li>
+            <li>Estimados dinámicos <span class="tag">Algoritmo</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="mesero">
+      <div class="section-head">
+        <h2 class="section-title">Menú · Mesero</h2>
+        <span class="badge">Mesas y pedidos</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Asignaciones</div>
+          <p class="meta">Mesas a cargo y cobertura.</p>
+          <ul class="actions">
+            <li>Transferir mesa <span class="tag">Autorización</span></li>
+            <li>Bloques de turno <span class="tag">Rotación</span></li>
+            <li>Alertas de llamados <span class="tag">Campanilla</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Toma de pedidos</div>
+          <p class="meta">Carga rápida y modificadores.</p>
+          <ul class="actions">
+            <li>Menú digital <span class="tag">Categorías</span></li>
+            <li>Notas a cocina <span class="tag">Sin gluten</span></li>
+            <li>Upselling sugerido <span class="tag">Maridajes</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Cuentas y pagos</div>
+          <p class="meta">Control de cuenta y cierres.</p>
+          <ul class="actions">
+            <li>Dividir cuenta <span class="tag">Por ítem</span></li>
+            <li>Propinas sugeridas <span class="tag">Configurables</span></li>
+            <li>Pago mixto <span class="tag">Tarjeta/efectivo</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cocinero">
+      <div class="section-head">
+        <h2 class="section-title">Menú · Cocinero</h2>
+        <span class="badge">Órdenes y pases</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Tickets de cocina</div>
+          <p class="meta">Cola de órdenes por prioridad.</p>
+          <ul class="actions">
+            <li>Prioridad visual <span class="tag">Color + tiempo</span></li>
+            <li>Modificadores <span class="tag">Alergias</span></li>
+            <li>Reasignar estación <span class="tag">Caliente/frío</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Pase a sala</div>
+          <p class="meta">Listo para servir y retiros.</p>
+          <ul class="actions">
+            <li>Marcar listo <span class="tag">Notifica mesero</span></li>
+            <li>Consolidar bandejas <span class="tag">Por mesa</span></li>
+            <li>Control de devoluciones <span class="tag">Motivos</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Inventario rápido</div>
+          <p class="meta">Insumos críticos y mermas.</p>
+          <ul class="actions">
+            <li>Alertas de stock <span class="tag">Umbrales</span></li>
+            <li>Registro de merma <span class="tag">Motivo</span></li>
+            <li>Requerimientos a compras <span class="tag">Solicitud</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="admin">
+      <div class="section-head">
+        <h2 class="section-title">Menú · Administrador</h2>
+        <span class="badge">Operación y negocio</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Usuarios y roles</div>
+          <p class="meta">Permisos y accesos granulares.</p>
+          <ul class="actions">
+            <li>Alta/Baja/Edición <span class="tag">Auditable</span></li>
+            <li>Perfiles por área <span class="tag">Principio mínimo</span></li>
+            <li>Bitácora de actividad <span class="tag">Trazabilidad</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Finanzas</div>
+          <p class="meta">Ventas, costos y cierres.</p>
+          <ul class="actions">
+            <li>Arqueo de caja <span class="tag">Turno</span></li>
+            <li>Costeo de recetas <span class="tag">Margen</span></li>
+            <li>Reportes diarios <span class="tag">Exportables</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Menú y precios</div>
+          <p class="meta">Gestión central de carta.</p>
+          <ul class="actions">
+            <li>Versionado de carta <span class="tag">Histórico</span></li>
+            <li>Promociones <span class="tag">Rangos horarios</span></li>
+            <li>Disponibilidad por día <span class="tag">86 por día</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cliente">
+      <div class="section-head">
+        <h2 class="section-title">Menú · Cliente</h2>
+        <span class="badge">Autogestión</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reserva en línea</div>
+          <p class="meta">Solicitar y confirmar horario.</p>
+          <ul class="actions">
+            <li>Selección de mesa <span class="tag">Preferencias</span></li>
+            <li>Pre-orden opcional <span class="tag">Acelera servicio</span></li>
+            <li>Recordatorios <span class="tag">Email/SMS</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Carta digital</div>
+          <p class="meta">Explora platos y maridajes.</p>
+          <ul class="actions">
+            <li>Filtros de alérgenos <span class="tag">Seguridad</span></li>
+            <li>Recomendaciones <span class="tag">Chef</span></li>
+            <li>Valoraciones <span class="tag">Social</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Cuenta y pago</div>
+          <p class="meta">Ver consumo y pagar.</p>
+          <ul class="actions">
+            <li>Ver cuenta en vivo <span class="tag">Transparencia</span></li>
+            <li>Pagar desde el móvil <span class="tag">QR</span></li>
+            <li>Descargar factura <span class="tag">PDF</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="actividad">
+      <div class="section-head">
+        <h2 class="section-title">Actividad simulada</h2>
+        <span class="badge">Sin backend · listo para conectar</span>
+      </div>
+      <div class="activity">
+        <div class="activity-head">
+          <h4>Historial reciente</h4>
+          <div class="activity-actions">
+            <button type="button" class="btn" id="activity-clear">Borrar historial</button>
+          </div>
+        </div>
+        <ul id="activity-feed"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="dialog-backdrop" class="dialog-backdrop" aria-hidden="true">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+      <header>
+        <h3 id="dialog-title">Acción</h3>
+        <small id="dialog-desc">Configura y confirma.</small>
+      </header>
+      <form id="dialog-form">
+        <div id="dialog-fields"></div>
+        <div class="dialog-actions">
+          <button type="button" class="btn" id="dialog-cancel">Cancelar</button>
+          <button type="submit" class="btn primary">Confirmar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    const toastEl = document.getElementById('toast');
+    const dialogBackdrop = document.getElementById('dialog-backdrop');
+    const dialogTitle = document.getElementById('dialog-title');
+    const dialogDesc = document.getElementById('dialog-desc');
+    const dialogForm = document.getElementById('dialog-form');
+    const dialogFields = document.getElementById('dialog-fields');
+    const dialogCancel = document.getElementById('dialog-cancel');
+    const activityFeed = document.getElementById('activity-feed');
+    const activityClear = document.getElementById('activity-clear');
+
+    let toastTimeout;
+    let currentActionLabel = '';
+    let currentSectionName = 'General';
+    const STORAGE_KEY = 'resto-ui-activity-v1';
+
+    const dataSets = {
+      mesas: ['Mesa 1 · 2 pax', 'Mesa 2 · 4 pax', 'Mesa 3 · 6 pax', 'Terraza A', 'Barra 1'],
+      estadosMesa: ['Libre', 'Asignada', 'En servicio', 'Cuenta solicitada', 'Cerrada'],
+      platos: ['Ceviche cítrico', 'Pasta al tartufo', 'Pulpo a la parrilla', 'Risotto de hongos', 'Ensalada verde'],
+      modificadores: ['Sin gluten', 'Extra picante', 'Sin sal', 'Vegano', 'Sin lácteos'],
+      pagos: ['Efectivo', 'Tarjeta', 'QR/Link', 'Cortesía', 'Vale'],
+      reservas: ['Reserva #1204 · 20:30', 'Reserva #1205 · 21:00', 'Reserva #1206 · 21:30'],
+      rolesAdmin: ['Crear usuario', 'Suspender usuario', 'Editar carta', 'Cerrar turno', 'Ajustar precios'],
+      clientes: ['Cliente frecuente', 'Nuevo cliente', 'Corporativo']
+    };
+
+    function showToast(message) {
+      toastEl.textContent = message;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 2500);
+    }
+
+    function logActivity(message, section = 'General') {
+      const timestamp = new Date();
+      const label = `[${timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}] [${section}] ${message}`;
+
+      const entry = document.createElement('li');
+      entry.textContent = label;
+      activityFeed.prepend(entry);
+
+      persistActivity(label);
+      trimActivity();
+    }
+
+    function persistActivity(label) {
+      const saved = loadActivityList();
+      saved.unshift(label);
+      const limit = 30;
+      while (saved.length > limit) saved.pop();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    }
+
+    function loadActivityList() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function renderStoredActivity() {
+      const saved = loadActivityList();
+      saved.forEach(label => {
+        const entry = document.createElement('li');
+        entry.textContent = label;
+        activityFeed.appendChild(entry);
+      });
+      trimActivity();
+    }
+
+    function trimActivity() {
+      const limit = 12;
+      while (activityFeed.children.length > limit) {
+        activityFeed.removeChild(activityFeed.lastChild);
+      }
+    }
+
+    function options(list) {
+      return list.map(item => `<option value="${item}">${item}</option>`).join('');
+    }
+
+    function buildFields(kind) {
+      if (kind === 'mesa') {
+        return `
+          <label>Selecciona mesa
+            <select name="mesa" required>${options(dataSets.mesas)}</select>
+          </label>
+          <label>Estado
+            <select name="estado" required>${options(dataSets.estadosMesa)}</select>
+          </label>
+          <label>Notas
+            <textarea name="nota" placeholder="Alergias, preferencia de zona..."></textarea>
+          </label>
+        `;
+      }
+      if (kind === 'plato') {
+        return `
+          <label>Plato
+            <select name="plato" required>${options(dataSets.platos)}</select>
+          </label>
+          <label>Modificador
+            <select name="modificador">${options(['Ninguno', ...dataSets.modificadores])}</select>
+          </label>
+          <label>Mesa / Reserva
+            <select name="destino" required>${options([...dataSets.mesas, ...dataSets.reservas])}</select>
+          </label>
+          <label>Notas a cocina
+            <textarea name="nota" placeholder="Ej: Sin cebolla, término 3/4"></textarea>
+          </label>
+        `;
+      }
+      if (kind === 'pago') {
+        return `
+          <label>Cuenta
+            <select name="destino" required>${options([...dataSets.mesas, 'Para llevar'])}</select>
+          </label>
+          <label>Método de pago
+            <select name="pago" required>${options(dataSets.pagos)}</select>
+          </label>
+          <label>Monto
+            <input name="monto" type="number" min="0" step="0.01" placeholder="0.00" required />
+          </label>
+        `;
+      }
+      if (kind === 'admin') {
+        return `
+          <label>Acción administrativa
+            <select name="accion" required>${options(dataSets.rolesAdmin)}</select>
+          </label>
+          <label>Área / Mesa / Carta
+            <select name="area" required>${options(['Salón', 'Cocina', 'Caja', 'Carta', 'Usuarios'])}</select>
+          </label>
+          <label>Detalle
+            <textarea name="nota" placeholder="Describe el cambio o incidencia"></textarea>
+          </label>
+        `;
+      }
+      if (kind === 'cliente') {
+        return `
+          <label>Cliente
+            <select name="cliente" required>${options(dataSets.clientes)}</select>
+          </label>
+          <label>Reserva / Mesa
+            <select name="destino" required>${options([...dataSets.reservas, ...dataSets.mesas])}</select>
+          </label>
+          <label>Preferencia
+            <textarea name="nota" placeholder="Ej: Mesa terraza, silla alta, ocasión especial"></textarea>
+          </label>
+        `;
+      }
+      return `
+        <label>Detalle
+          <textarea name="nota" placeholder="Describe la acción"></textarea>
+        </label>
+      `;
+    }
+
+    function openDialog(kind, label, sectionName) {
+      dialogTitle.textContent = label;
+      dialogDesc.textContent = sectionName ? `${sectionName} · Paso previo a enviar a la API` : 'Configura y confirma.';
+      dialogFields.innerHTML = buildFields(kind);
+      dialogForm.dataset.kind = kind;
+      currentActionLabel = label || 'Acción';
+      dialogBackdrop.classList.add('show');
+      dialogBackdrop.setAttribute('aria-hidden', 'false');
+      setTimeout(() => {
+        const focusable = dialogForm.querySelector('select, input, textarea');
+        if (focusable) focusable.focus();
+      }, 20);
+    }
+
+    function closeDialog() {
+      dialogBackdrop.classList.remove('show');
+      dialogBackdrop.setAttribute('aria-hidden', 'true');
+      dialogFields.innerHTML = '';
+      dialogForm.dataset.kind = '';
+    }
+
+    function detectKind(sectionId, label) {
+      const text = (label || '').toLowerCase();
+      if (text.includes('mesa') || text.includes('reserva')) return 'mesa';
+      if (text.includes('pedido') || text.includes('orden') || text.includes('ticket') || text.includes('plato')) return 'plato';
+      if (text.includes('pago') || text.includes('cuenta')) return 'pago';
+      if (sectionId === 'admin') return 'admin';
+      if (sectionId === 'cliente') return 'cliente';
+      return 'nota';
+    }
+
+    function handleActionActivate(ev) {
+      const text = ev.currentTarget.dataset.label || ev.currentTarget.textContent.trim();
+      const sectionId = ev.currentTarget.dataset.section || 'general';
+      const sectionName = ev.currentTarget.dataset.sectionName || 'General';
+      const kind = detectKind(sectionId, text);
+      currentSectionName = sectionName;
+      openDialog(kind, text, sectionName);
+    }
+
+    dialogForm.addEventListener('submit', ev => {
+      ev.preventDefault();
+      const data = new FormData(dialogForm);
+      const kind = dialogForm.dataset.kind;
+      const parts = [];
+
+      if (kind === 'mesa') {
+        parts.push(`Mesa: ${data.get('mesa')}`);
+        parts.push(`Estado: ${data.get('estado')}`);
+      } else if (kind === 'plato') {
+        parts.push(`Plato: ${data.get('plato')}`);
+        parts.push(`Destino: ${data.get('destino')}`);
+        parts.push(`Mod: ${data.get('modificador')}`);
+      } else if (kind === 'pago') {
+        parts.push(`Cuenta: ${data.get('destino')}`);
+        parts.push(`Pago: ${data.get('pago')}`);
+        parts.push(`Monto: ${data.get('monto') || '0'}`);
+      } else if (kind === 'admin') {
+        parts.push(`Acción: ${data.get('accion')}`);
+        parts.push(`Área: ${data.get('area')}`);
+      } else if (kind === 'cliente') {
+        parts.push(`Cliente: ${data.get('cliente')}`);
+        parts.push(`Destino: ${data.get('destino')}`);
+      }
+
+      const nota = data.get('nota');
+      if (nota) parts.push(`Nota: ${nota}`);
+
+      const summary = parts.filter(Boolean).join(' · ');
+      logActivity(summary || 'Acción registrada.', currentSectionName);
+      const title = currentActionLabel || 'Acción';
+      const toastMsg = summary ? `${title}: guardado. ${summary}` : `${title}: guardado.`;
+      showToast(toastMsg);
+      closeDialog();
+      activityFeed.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    dialogCancel.addEventListener('click', closeDialog);
+    dialogBackdrop.addEventListener('click', ev => {
+      if (ev.target === dialogBackdrop) closeDialog();
+    });
+
+    document.querySelectorAll('ul.actions li').forEach(item => {
+      const section = item.closest('section');
+      const sectionId = section ? section.id : 'general';
+      const sectionName = section ? section.querySelector('.section-title')?.textContent?.trim() : 'General';
+      item.tabIndex = 0;
+      item.setAttribute('role', 'button');
+      item.dataset.label = item.firstChild.textContent.trim();
+      item.dataset.section = sectionId;
+      item.dataset.sectionName = sectionName;
+      item.addEventListener('click', handleActionActivate);
+      item.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          handleActionActivate(ev);
+        }
+      });
+    });
+
+    // Fallback toast when closing dialog via ESC or cancel after data entry
+    dialogBackdrop.addEventListener('keydown', ev => {
+      if (ev.key === 'Escape') closeDialog();
+    });
+
+    // Cargar actividad guardada al abrir la página
+    renderStoredActivity();
+
+    // Limpiar historial
+    activityClear.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      activityFeed.innerHTML = '';
+      showToast('Historial borrado.');
+    });
+  </script>
+</body>
+</html>
