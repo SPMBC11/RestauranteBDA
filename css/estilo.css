@@ -21,8 +21,14 @@ body {
               linear-gradient(135deg, #0b1223, #0c162e 60%, #0a1020);
   color: var(--text);
   min-height: 100vh;
-  padding: 32px;
+  padding: 28px;
   scroll-behavior: smooth;
+}
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
 }
 a {
   color: inherit;
@@ -73,6 +79,17 @@ h1 {
   color: var(--muted);
   font-size: 13px;
 }
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: var(--panel);
+}
+.user-chip strong { display: block; }
+.user-chip small { color: var(--muted); }
 nav {
   background: var(--panel);
   border: 1px solid var(--stroke);
@@ -98,6 +115,7 @@ nav {
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
   font-weight: 600;
   letter-spacing: 0.2px;
+  min-height: 72px;
 }
 .nav-link:hover {
   transform: translateY(-2px);
@@ -110,7 +128,6 @@ nav {
   font-weight: 500;
 }
 main {
-  margin-top: 22px;
   display: grid;
   gap: 18px;
 }
@@ -228,9 +245,9 @@ ul.actions li {
 }
 .auth-panel {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  align-items: stretch;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 16px;
+  align-items: start;
 }
 .auth-copy {
   padding: 14px;
@@ -239,6 +256,7 @@ ul.actions li {
   border-radius: 14px;
   display: grid;
   gap: 10px;
+  min-height: 100%;
 }
 .auth-copy h3 {
   margin: 0;
@@ -257,6 +275,7 @@ ul.actions li {
   border-radius: 14px;
   display: grid;
   gap: 12px;
+  min-height: 100%;
 }
 .tabs {
   display: inline-flex;
@@ -386,6 +405,8 @@ textarea {
   transform: translate(-50%, -4px);
 }
 @media (max-width: 768px) {
-  body { padding: 18px; }
+  body { padding: 16px; }
+  .page { max-width: 100%; }
+  .auth-panel { grid-template-columns: 1fr; }
   header { flex-direction: column; align-items: flex-start; }
 }

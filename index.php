@@ -1,8 +1,32 @@
 <?php
+session_start();
 $parametros = require __DIR__ . '/etc/parametros.php';
 require __DIR__ . '/lib/libreria.php';
 require __DIR__ . '/lib/restaurante.php';
+require __DIR__ . '/lib/auth.php';
+
+if (isset($_GET['logout'])) {
+  session_destroy();
+  header('Location: login.php');
+  exit;
+}
+
+if (empty($_SESSION['user'])) {
+  header('Location: login.php');
+  exit;
+}
+
+$user = $_SESSION['user'];
+$role = $user['role'] ?? 'cliente';
 $menus = obtenerMenusRestaurante();
+
+$visibleMenus = [];
+if (isset($menus['principal'])) {
+  $visibleMenus['principal'] = $menus['principal'];
+}
+if (isset($menus[$role])) {
+  $visibleMenus[$role] = $menus[$role];
+}
 ?>
 <!doctype html>
 <html lang="es">
@@ -16,29 +40,38 @@ $menus = obtenerMenusRestaurante();
   <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+  <div class="page">
   <header>
     <div class="brand">
       <div class="brand-mark">R</div>
       <div>
         <h1><?php echo e($parametros['app_name']); ?> · Panel unificado</h1>
-        <p class="tagline">HTML5 listo para conectar a tu backend o base de datos.</p>
+        <p class="tagline">HTML5 con autenticación simulada y vistas por rol.</p>
       </div>
     </div>
-    <div class="pill">Entorno: <?php echo e($parametros['entorno']); ?></div>
+    <div class="user-chip">
+      <div>
+        <strong><?php echo e($user['name'] ?? $user['email'] ?? 'Usuario'); ?></strong>
+        <small><?php echo strtoupper(e($role)); ?></small>
+      </div>
+      <a class="btn" href="?logout=1">Salir</a>
+    </div>
   </header>
 
   <nav aria-label="Menú principal">
     <div class="nav-grid">
-      <a class="nav-link" href="#acceso">
-        <div>🔐 Acceso</div>
-        <span>Autenticación</span>
-      </a>
-      <?php foreach ($menus as $id => $menu): ?>
+      <?php foreach ($visibleMenus as $id => $menu): ?>
         <a class="nav-link" href="#<?php echo e($id); ?>">
           <div><?php echo e($menu['icon']); ?> <?php echo e($menu['short']); ?></div>
           <span><?php echo e($menu['badge']); ?></span>
         </a>
       <?php endforeach; ?>
+      <?php if (in_array($role, ['maitre', 'admin'], true)): ?>
+        <a class="nav-link" href="maitre.php">
+          <div>🛎️ Tablero Maitre</div>
+          <span>Reservas en vivo</span>
+        </a>
+      <?php endif; ?>
       <a class="nav-link" href="#actividad">
         <div>📝 Log</div>
         <span>Simulación</span>
@@ -47,69 +80,36 @@ $menus = obtenerMenusRestaurante();
   </nav>
 
   <main>
-    <section id="acceso">
+    <section>
       <div class="section-head">
         <div>
-          <h2 class="section-title">Autenticación</h2>
-          <p class="section-subtitle">Crear cuenta o iniciar sesión para asignar el rol correcto.</p>
+          <h2 class="section-title">Bienvenido, <?php echo e($user['name'] ?? $user['email'] ?? ''); ?></h2>
+          <p class="section-subtitle">Rol activo: <?php echo strtoupper(e($role)); ?> · Solo verás las funcionalidades de tu rol.</p>
         </div>
-        <span class="badge">Control de acceso</span>
+        <span class="badge">Sesión activa</span>
       </div>
-      <div class="auth-panel">
+      <div class="auth-panel" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
         <div class="auth-copy">
-          <h3>Roles contemplados</h3>
-          <p class="helper-text">Una vez autenticado, el sistema puede dirigir al usuario al menú de su rol.</p>
+          <h3>Atajos</h3>
           <ul>
-            <li>Maitre: reservas, sala y lista de espera.</li>
-            <li>Mesero: toma de pedidos, cuentas y cobros.</li>
-            <li>Cocinero: tickets, pase y stock rápido.</li>
-            <li>Administrador: finanzas, usuarios y carta.</li>
-            <li>Cliente: autogestión de reserva y cuenta.</li>
+            <li><a href="#principal">Ir a Principal</a></li>
+            <?php if (isset($visibleMenus[$role])): ?>
+              <li><a href="#<?php echo e($role); ?>">Ir a tu menú</a></li>
+            <?php endif; ?>
+            <?php if (in_array($role, ['maitre', 'admin'], true)): ?>
+              <li><a href="maitre.php">Abrir tablero de reservas</a></li>
+            <?php endif; ?>
+            <li><a href="#actividad">Ir al log</a></li>
           </ul>
         </div>
         <div class="auth-box">
-          <div class="tabs">
-            <button type="button" class="tab active" data-auth-tab="login">Ya tengo cuenta</button>
-            <button type="button" class="tab" data-auth-tab="signup">Crear cuenta</button>
-          </div>
-          <form id="form-login" data-auth-form="login" class="form-grid">
-            <label class="form-control">Correo
-              <input name="email" type="email" placeholder="nombre@resto.com" required>
-            </label>
-            <label class="form-control">Contraseña
-              <input name="password" type="password" minlength="<?php echo (int)$parametros['seguridad']['min_pass_length']; ?>" required>
-            </label>
-            <button class="btn primary" type="submit">Ingresar</button>
-            <p class="helper-text">Las sesiones se pueden proteger con tokens de <?php echo (int)$parametros['seguridad']['token_ttl_minutes']; ?> minutos.</p>
-          </form>
-
-          <form id="form-signup" data-auth-form="signup" class="form-grid" hidden>
-            <label class="form-control">Nombre completo
-              <input name="nombre" required>
-            </label>
-            <label class="form-control">Correo institucional
-              <input name="email" type="email" placeholder="usuario@resto.com" required>
-            </label>
-            <label class="form-control">Rol
-              <select name="rol" required>
-                <option value="maitre">Maitre</option>
-                <option value="mesero">Mesero</option>
-                <option value="cocinero">Cocinero</option>
-                <option value="admin">Administrador</option>
-                <option value="cliente">Cliente</option>
-              </select>
-            </label>
-            <label class="form-control">Contraseña
-              <input name="password" type="password" minlength="<?php echo (int)$parametros['seguridad']['min_pass_length']; ?>" required>
-            </label>
-            <button class="btn primary" type="submit">Crear cuenta</button>
-            <p class="helper-text">El alta puede validar correo o SMS antes de asignar rol.</p>
-          </form>
+          <p class="helper-text">Usa el botón “Salir” para cambiar de usuario. Los datos de sesión se guardan en memoria PHP.</p>
+          <p class="helper-text">Puedes conectar estas acciones a tu API real sustituyendo el log simulado.</p>
         </div>
       </div>
     </section>
 
-    <?php foreach ($menus as $id => $menu): ?>
+    <?php foreach ($visibleMenus as $id => $menu): ?>
       <section id="<?php echo e($id); ?>">
         <div class="section-head">
           <div>
@@ -149,30 +149,44 @@ $menus = obtenerMenusRestaurante();
       </div>
     </section>
   </main>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script>
-    const tabs = document.querySelectorAll('[data-auth-tab]');
-    const forms = document.querySelectorAll('[data-auth-form]');
     const toastEl = document.getElementById('toast');
     const activityFeed = document.getElementById('activity-feed');
     const activityClear = document.getElementById('activity-clear');
-    const STORAGE_KEY = 'resto-ui-activity-v2';
     let toastTimeout;
 
-    function setAuthMode(mode) {
-      tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.authTab === mode));
-      forms.forEach(form => {
-        const isTarget = form.dataset.authForm === mode;
-        form.hidden = !isTarget;
-        form.setAttribute('aria-hidden', isTarget ? 'false' : 'true');
-      });
+    async function fetchActivity() {
+      try {
+        const res = await fetch('api/log.php');
+        const json = await res.json();
+        if (json.ok && Array.isArray(json.items)) {
+          activityFeed.innerHTML = '';
+          json.items.forEach(entry => appendActivity(entry));
+        }
+      } catch (err) {
+        appendActivity({ action: 'Sin conexión a API' });
+      }
+      trimActivity();
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => setAuthMode(tab.dataset.authTab));
-    });
+    function appendActivity(entry) {
+      const li = document.createElement('li');
+      const ts = entry.ts ? new Date(entry.ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+      const label = `[${ts || '---'}] [${entry.section || 'General'}] ${entry.action || ''} ${entry.meta ? '· ' + entry.meta : ''}`;
+      li.textContent = label;
+      activityFeed.appendChild(li);
+    }
+
+    function trimActivity() {
+      const limit = 50;
+      while (activityFeed.children.length > limit) {
+        activityFeed.removeChild(activityFeed.firstChild);
+      }
+    }
 
     function showToast(message) {
       toastEl.textContent = message;
@@ -181,50 +195,25 @@ $menus = obtenerMenusRestaurante();
       toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2600);
     }
 
-    function addActivity(message) {
-      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const entry = `[${timestamp}] ${message}`;
-      const li = document.createElement('li');
-      li.textContent = entry;
-      activityFeed.prepend(li);
-      persistActivity(entry);
-      trimActivity();
-    }
-
-    function persistActivity(entry) {
-      const saved = loadActivity();
-      saved.unshift(entry);
-      const limit = 30;
-      while (saved.length > limit) saved.pop();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-    }
-
-    function loadActivity() {
+    async function sendAction(sectionTitle, label, meta = '') {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return [];
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
+        const res = await fetch('api/log.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ section: sectionTitle, action: label, meta })
+        });
+        const json = await res.json();
+        if (json.ok && json.entry) {
+          activityFeed.prepend(document.createElement('li')).textContent = `[${new Date(json.entry.ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}] [${json.entry.section}] ${json.entry.action} · ${json.entry.meta || ''}`;
+          trimActivity();
+          return true;
+        }
       } catch (err) {
-        return [];
+        // ignore
       }
-    }
-
-    function renderStoredActivity() {
-      const saved = loadActivity();
-      saved.forEach(entry => {
-        const li = document.createElement('li');
-        li.textContent = entry;
-        activityFeed.appendChild(li);
-      });
+      activityFeed.prepend(document.createElement('li')).textContent = `[---] [${sectionTitle}] ${label} · (offline)`;
       trimActivity();
-    }
-
-    function trimActivity() {
-      const limit = 12;
-      while (activityFeed.children.length > limit) {
-        activityFeed.removeChild(activityFeed.lastChild);
-      }
+      return false;
     }
 
     document.querySelectorAll('ul.actions li').forEach(item => {
@@ -233,8 +222,9 @@ $menus = obtenerMenusRestaurante();
       item.addEventListener('click', () => {
         const label = item.dataset.label;
         const section = item.dataset.sectionTitle;
-        addActivity(`${section}: ${label}`);
-        showToast(`${label} listo para implementar con API`);
+        const meta = item.querySelector('.tag')?.textContent || '';
+        sendAction(section, label, meta);
+        showToast(`${label} enviado`);
       });
       item.addEventListener('keydown', ev => {
         if (ev.key === 'Enter' || ev.key === ' ') {
@@ -244,25 +234,13 @@ $menus = obtenerMenusRestaurante();
       });
     });
 
-    forms.forEach(form => {
-      form.addEventListener('submit', ev => {
-        ev.preventDefault();
-        const data = new FormData(form);
-        const mode = form.dataset.authForm === 'signup' ? 'Alta' : 'Login';
-        const email = data.get('email');
-        const rol = data.get('rol') || 'Pendiente de rol';
-        addActivity(`${mode}: ${email} · ${rol}`);
-        showToast(`${mode} simulado para ${email}`);
-      });
-    });
-
-    activityClear.addEventListener('click', () => {
-      localStorage.removeItem(STORAGE_KEY);
+    activityClear.addEventListener('click', async () => {
+      await sendAction('Sistema', 'Historial borrado');
       activityFeed.innerHTML = '';
       showToast('Historial borrado.');
     });
 
-    renderStoredActivity();
+    fetchActivity();
   </script>
 </body>
 </html>
