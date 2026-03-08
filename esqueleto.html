@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurante · Esqueleto HTML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <div>
+        <h1>Restaurante · Esqueleto</h1>
+        <p class="tagline">Plantilla estática para todos los roles.</p>
+      </div>
+    </div>
+    <div class="pill">HTML5 · sin backend</div>
+  </header>
+
+  <nav aria-label="Menú principal">
+    <div class="nav-grid">
+      <a class="nav-link" href="#acceso"><div>🔐 Acceso</div><span>Autenticación</span></a>
+      <a class="nav-link" href="#principal"><div>🏠 Principal</div><span>Vista general</span></a>
+      <a class="nav-link" href="#maitre"><div>🛎️ Maitre</div><span>Salón</span></a>
+      <a class="nav-link" href="#mesero"><div>🧾 Mesero</div><span>Mesas</span></a>
+      <a class="nav-link" href="#cocinero"><div>👨‍🍳 Cocinero</div><span>Cocina</span></a>
+      <a class="nav-link" href="#admin"><div>⚙️ Administrador</div><span>Operación</span></a>
+      <a class="nav-link" href="#cliente"><div>🧑‍🧑‍🧒 Cliente</div><span>Autogestión</span></a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="acceso">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Autenticación</h2>
+          <p class="section-subtitle">Crear o iniciar sesión para derivar al menú correcto.</p>
+        </div>
+        <span class="badge">Control de acceso</span>
+      </div>
+      <div class="auth-panel">
+        <div class="auth-copy">
+          <h3>Flujo sugerido</h3>
+          <ul>
+            <li>Validar correo o móvil.</li>
+            <li>Asociar rol según alta.</li>
+            <li>Redirigir a menú correspondiente.</li>
+          </ul>
+        </div>
+        <div class="auth-box">
+          <div class="tabs">
+            <button type="button" class="tab active">Ya tengo cuenta</button>
+            <button type="button" class="tab">Crear cuenta</button>
+          </div>
+          <div class="form-grid">
+            <label class="form-control">Correo
+              <input placeholder="nombre@resto.com">
+            </label>
+            <label class="form-control">Contraseña
+              <input type="password">
+            </label>
+            <button class="btn primary" type="button">Continuar</button>
+            <p class="helper-text">Sustituir por lógica real de login/registro.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="principal">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Menú principal</h2>
+          <p class="section-subtitle">Resumen de operación.</p>
+        </div>
+        <span class="badge">Vista general</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reservas en curso</div>
+          <p class="meta">Disponibilidad y asignación.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Calendario</strong></div><span class="tag">Agenda</span></li>
+            <li><div class="action-text"><strong>Asignar mesa</strong></div><span class="tag">Drag</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Mesas activas</div>
+          <p class="meta">Estado en vivo.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Mapa</strong></div><span class="tag">Plano</span></li>
+            <li><div class="action-text"><strong>Cuenta en curso</strong></div><span class="tag">Consumos</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="maitre">
+      <div class="section-head">
+        <div><h2 class="section-title">Menú · Maitre</h2><p class="section-subtitle">Salón y reservas.</p></div>
+        <span class="badge">Salón</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reservas</div>
+          <p class="meta">Crear, editar, confirmar.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Agenda visual</strong></div><span class="tag">Horas pico</span></li>
+            <li><div class="action-text"><strong>Preasignar mesa</strong></div><span class="tag">Capacidad</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Lista de espera</div>
+          <p class="meta">Turnos y avisos.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Check-in QR</strong></div><span class="tag">Autoatención</span></li>
+            <li><div class="action-text"><strong>SMS/Email</strong></div><span class="tag">Aviso</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="mesero">
+      <div class="section-head">
+        <div><h2 class="section-title">Menú · Mesero</h2><p class="section-subtitle">Mesas y pedidos.</p></div>
+        <span class="badge">Servicio</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Toma de pedidos</div>
+          <p class="meta">Carga rápida y modificadores.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Menú digital</strong></div><span class="tag">Categorías</span></li>
+            <li><div class="action-text"><strong>Notas a cocina</strong></div><span class="tag">Alergias</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Cuentas y pagos</div>
+          <p class="meta">Cierres por mesa.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Dividir cuenta</strong></div><span class="tag">Por ítem</span></li>
+            <li><div class="action-text"><strong>Pago mixto</strong></div><span class="tag">Tarjeta/efectivo</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cocinero">
+      <div class="section-head">
+        <div><h2 class="section-title">Menú · Cocinero</h2><p class="section-subtitle">Órdenes y pases.</p></div>
+        <span class="badge">Cocina</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Tickets</div>
+          <p class="meta">Prioridad y tiempos.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Prioridad visual</strong></div><span class="tag">Color</span></li>
+            <li><div class="action-text"><strong>Reasignar estación</strong></div><span class="tag">Caliente/frío</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Pase a sala</div>
+          <p class="meta">Listo para servir.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Marcar listo</strong></div><span class="tag">Notifica</span></li>
+            <li><div class="action-text"><strong>Control devoluciones</strong></div><span class="tag">Motivos</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="admin">
+      <div class="section-head">
+        <div><h2 class="section-title">Menú · Administrador</h2><p class="section-subtitle">Operación y negocio.</p></div>
+        <span class="badge">Administración</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Usuarios y roles</div>
+          <p class="meta">Permisos y auditoría.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Alta/Baja/Edición</strong></div><span class="tag">Auditable</span></li>
+            <li><div class="action-text"><strong>Bitácora</strong></div><span class="tag">Trazabilidad</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Finanzas</div>
+          <p class="meta">Ventas y costos.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Arqueo de caja</strong></div><span class="tag">Turno</span></li>
+            <li><div class="action-text"><strong>Reportes diarios</strong></div><span class="tag">Exportables</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cliente">
+      <div class="section-head">
+        <div><h2 class="section-title">Menú · Cliente</h2><p class="section-subtitle">Autogestión.</p></div>
+        <span class="badge">Cliente</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="role">Reserva en línea</div>
+          <p class="meta">Solicitar y confirmar.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Selección de mesa</strong></div><span class="tag">Preferencias</span></li>
+            <li><div class="action-text"><strong>Recordatorios</strong></div><span class="tag">SMS/Email</span></li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="role">Cuenta y pago</div>
+          <p class="meta">Ver y pagar.</p>
+          <ul class="actions">
+            <li><div class="action-text"><strong>Pagar móvil</strong></div><span class="tag">QR</span></li>
+            <li><div class="action-text"><strong>Factura PDF</strong></div><span class="tag">Descarga</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
