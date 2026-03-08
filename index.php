@@ -72,6 +72,30 @@ if (isset($menus[$role])) {
           <span>Reservas en vivo</span>
         </a>
       <?php endif; ?>
+      <?php if (in_array($role, ['mesero', 'admin'], true)): ?>
+        <a class="nav-link" href="mesero.php">
+          <div>🧾 Tablero Mesero</div>
+          <span>Pedidos y estados</span>
+        </a>
+      <?php endif; ?>
+      <?php if (in_array($role, ['cocinero', 'admin'], true)): ?>
+        <a class="nav-link" href="cocinero.php">
+          <div>👨‍🍳 Cocina</div>
+          <span>Tickets de pase</span>
+        </a>
+      <?php endif; ?>
+      <?php if (in_array($role, ['cliente', 'admin'], true)): ?>
+        <a class="nav-link" href="cliente.php">
+          <div>🧑‍🧑‍🧒 Área Cliente</div>
+          <span>Mis reservas</span>
+        </a>
+      <?php endif; ?>
+      <?php if ($role === 'admin'): ?>
+        <a class="nav-link" href="admin.php">
+          <div>⚙️ Admin</div>
+          <span>Usuarios y roles</span>
+        </a>
+      <?php endif; ?>
       <a class="nav-link" href="#actividad">
         <div>📝 Log</div>
         <span>Simulación</span>
@@ -98,6 +122,18 @@ if (isset($menus[$role])) {
             <?php endif; ?>
             <?php if (in_array($role, ['maitre', 'admin'], true)): ?>
               <li><a href="maitre.php">Abrir tablero de reservas</a></li>
+            <?php endif; ?>
+            <?php if (in_array($role, ['mesero', 'admin'], true)): ?>
+              <li><a href="mesero.php">Abrir tablero de mesero</a></li>
+            <?php endif; ?>
+            <?php if (in_array($role, ['cocinero', 'admin'], true)): ?>
+              <li><a href="cocinero.php">Abrir tablero de cocina</a></li>
+            <?php endif; ?>
+            <?php if (in_array($role, ['cliente', 'admin'], true)): ?>
+              <li><a href="cliente.php">Ir a mis reservas</a></li>
+            <?php endif; ?>
+            <?php if ($role === 'admin'): ?>
+              <li><a href="admin.php">Gestionar usuarios</a></li>
             <?php endif; ?>
             <li><a href="#actividad">Ir al log</a></li>
           </ul>

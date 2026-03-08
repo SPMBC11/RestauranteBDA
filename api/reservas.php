@@ -29,13 +29,25 @@ function ensureRole(array $allowed): void
 }
 
 ensureAuth();
-ensureRole(['maitre', 'admin']);
+
+$role = $_SESSION['user']['role'] ?? 'guest';
+$userEmail = $_SESSION['user']['email'] ?? 'anon';
 
 $method = $_SERVER['REQUEST_METHOD'];
 $store = load_json(RES_PATH, []);
 
 if ($method === 'GET') {
-    echo json_encode(['ok' => true, 'items' => array_values($store)]);
+    if (in_array($role, ['maitre', 'admin'], true)) {
+        echo json_encode(['ok' => true, 'items' => array_values($store)]);
+        exit;
+    }
+    if ($role === 'cliente') {
+        $own = array_values(array_filter($store, fn($r) => ($r['creadoPor'] ?? '') === $userEmail));
+        echo json_encode(['ok' => true, 'items' => $own]);
+        exit;
+    }
+    http_response_code(403);
+    echo json_encode(['ok' => false, 'message' => 'Sin permiso']);
     exit;
 }
 
@@ -44,6 +56,11 @@ if ($method === 'POST') {
     $action = $payload['action'] ?? 'create';
 
     if ($action === 'create') {
+        if (!in_array($role, ['maitre', 'admin', 'cliente'], true)) {
+            http_response_code(403);
+            echo json_encode(['ok' => false, 'message' => 'Sin permiso']);
+            exit;
+        }
         $nombre = trim((string)($payload['nombre'] ?? ''));
         $fecha = trim((string)($payload['fecha'] ?? ''));
         $pax = max(1, (int)($payload['pax'] ?? 1));
@@ -61,7 +78,7 @@ if ($method === 'POST') {
             'pax' => $pax,
             'notas' => $notas,
             'estado' => 'pendiente',
-            'creadoPor' => $_SESSION['user']['email'] ?? 'maitre',
+            'creadoPor' => $userEmail,
             'ts' => date('c'),
         ];
         $store[$id] = $entry;
@@ -71,6 +88,11 @@ if ($method === 'POST') {
     }
 
     if ($action === 'estado') {
+        if (!in_array($role, ['maitre', 'admin'], true)) {
+            http_response_code(403);
+            echo json_encode(['ok' => false, 'message' => 'Solo maitre/admin actualizan estados']);
+            exit;
+        }
         $id = $payload['id'] ?? '';
         $nuevo = $payload['estado'] ?? '';
         if (!$id || !isset($store[$id])) {
